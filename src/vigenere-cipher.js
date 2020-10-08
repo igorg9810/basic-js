@@ -14,10 +14,9 @@ class VigenereCipheringMachine {
         if (message == undefined || key == undefined) {
             throw Error();
         }
-        let maxlength = Math.max(message.length, key.length);
         let r = '';
         let offset = 0;
-        for (let i = 0; i < maxlength; i++) {
+        for (let i = 0; i < message.length; i++) {
             let s = message[((i >= message.length) ? i % message.length : i)].toUpperCase()
             let mi = this.a.indexOf(s);
             if (mi == -1) {
@@ -26,9 +25,7 @@ class VigenereCipheringMachine {
                 continue;
             }
             let ki_s = key[((i - offset >= key.length) ? (i - offset) % key.length : i - offset)];
-            //console.log(ki_s)
             let ki = this.a.indexOf(ki_s.toUpperCase());
-            //console.log(ki)
             let c = this.a[(((this.a.length + (mi + ki)) % this.a.length))]
             r += c;
         }
@@ -42,10 +39,9 @@ class VigenereCipheringMachine {
         if (encryptedMessage == undefined || key == undefined) {
             throw Error();
         }
-        let maxlength = Math.max(encryptedMessage.length, key.length);
         let r = '';
         let offset = 0;
-        for (let i = 0; i < maxlength; i++) {
+        for (let i = 0; i < encryptedMessage.length; i++) {
             let s = encryptedMessage[((i >= encryptedMessage.length) ? i % encryptedMessage.length : i)].toUpperCase()
             let mi = this.a.indexOf(s);
             if (mi == -1) {

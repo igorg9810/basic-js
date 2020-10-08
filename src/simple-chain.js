@@ -8,17 +8,18 @@ const chainMaker = {
     return this.chain.length;
   },
   addLink(value) {
-    if (value == undefined){
+    if (value === undefined){
       value = "";
     }
-    this.chain.push("( " + String(value) + " )");
+    let str_value = String(value);
+    this.chain.push("( " + str_value + " )");
     return this;
   },
   removeLink(position) {
     if (position > this.chain.length || position < 0 || !Number.isInteger(position)){
       throw Error();
     }
-    this.chain.splice(position, 1);
+    this.chain.splice(position - 1, 1);
     return this;
   },
   reverseChain() {
